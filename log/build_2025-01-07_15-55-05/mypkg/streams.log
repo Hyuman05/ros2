@@ -1,0 +1,46 @@
+[0.703s] Invoking command in '/home/sasaki/ros2_ws/src/mypkg': PYTHONPATH=/home/sasaki/ros2_ws/src/mypkg/build/mypkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/mypkg build --build-base /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build install --record /home/sasaki/ros2_ws/src/mypkg/build/mypkg/install.log --install-scripts $base/lib/mypkg --single-version-externally-managed install_data
+[0.851s] running egg_info
+[0.851s] creating build/mypkg/mypkg.egg-info
+[0.851s] writing build/mypkg/mypkg.egg-info/PKG-INFO
+[0.852s] writing dependency_links to build/mypkg/mypkg.egg-info/dependency_links.txt
+[0.852s] writing entry points to build/mypkg/mypkg.egg-info/entry_points.txt
+[0.852s] writing requirements to build/mypkg/mypkg.egg-info/requires.txt
+[0.853s] writing top-level names to build/mypkg/mypkg.egg-info/top_level.txt
+[0.859s] writing manifest file 'build/mypkg/mypkg.egg-info/SOURCES.txt'
+[0.892s] reading manifest file 'build/mypkg/mypkg.egg-info/SOURCES.txt'
+[0.893s] writing manifest file 'build/mypkg/mypkg.egg-info/SOURCES.txt'
+[0.893s] running build
+[0.893s] running build_py
+[0.894s] creating /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build
+[0.894s] creating /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib
+[0.894s] creating /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg
+[0.894s] copying mypkg/listener.py -> /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg
+[0.895s] copying mypkg/__init__.py -> /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg
+[0.895s] copying mypkg/talker.py -> /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg
+[0.895s] running install
+[0.896s] running install_lib
+[0.897s] creating /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg
+[0.898s] copying /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg/listener.py -> /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg
+[0.898s] copying /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg/__init__.py -> /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg
+[0.898s] copying /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg/talker.py -> /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg
+[0.898s] byte-compiling /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg/listener.py to listener.cpython-38.pyc
+[0.899s] byte-compiling /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg/__init__.py to __init__.cpython-38.pyc
+[0.899s]   File "/home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg/listener.py", line 10
+[0.900s]     def cb(msg)
+[0.900s]               ^
+[0.900s] SyntaxError: invalid syntax
+[0.901s] 
+[0.901s] byte-compiling /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg/talker.py to talker.cpython-38.pyc
+[0.901s] running install_data
+[0.901s] creating /home/sasaki/ros2_ws/src/mypkg/install/mypkg/share/ament_index
+[0.901s] creating /home/sasaki/ros2_ws/src/mypkg/install/mypkg/share/ament_index/resource_index
+[0.901s] creating /home/sasaki/ros2_ws/src/mypkg/install/mypkg/share/ament_index/resource_index/packages
+[0.901s] copying resource/mypkg -> /home/sasaki/ros2_ws/src/mypkg/install/mypkg/share/ament_index/resource_index/packages
+[0.901s] copying package.xml -> /home/sasaki/ros2_ws/src/mypkg/install/mypkg/share/mypkg
+[0.901s] running install_egg_info
+[0.902s] Copying build/mypkg/mypkg.egg-info to /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg-0.0.0-py3.8.egg-info
+[0.904s] running install_scripts
+[0.920s] Installing listener script to /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/mypkg
+[0.920s] Installing talker script to /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/mypkg
+[0.921s] writing list of installed files to '/home/sasaki/ros2_ws/src/mypkg/build/mypkg/install.log'
+[0.939s] Invoked command in '/home/sasaki/ros2_ws/src/mypkg' returned '0': PYTHONPATH=/home/sasaki/ros2_ws/src/mypkg/build/mypkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/mypkg build --build-base /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build install --record /home/sasaki/ros2_ws/src/mypkg/build/mypkg/install.log --install-scripts $base/lib/mypkg --single-version-externally-managed install_data

@@ -1,0 +1,5 @@
+  File "/home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg/listener.py", line 10
+    def cb(msg)
+              ^
+SyntaxError: invalid syntax
+

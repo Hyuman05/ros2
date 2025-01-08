@@ -1,0 +1,60 @@
+[0.000000] (-) TimerEvent: {}
+[0.000857] (mypkg) JobQueued: {'identifier': 'mypkg', 'dependencies': OrderedDict()}
+[0.001867] (mypkg) JobStarted: {'identifier': 'mypkg'}
+[0.100018] (-) TimerEvent: {}
+[0.201277] (-) TimerEvent: {}
+[0.303873] (-) TimerEvent: {}
+[0.404635] (-) TimerEvent: {}
+[0.505064] (-) TimerEvent: {}
+[0.605414] (-) TimerEvent: {}
+[0.703985] (mypkg) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'egg_info', '--egg-base', 'build/mypkg', 'build', '--build-base', '/home/sasaki/ros2_ws/src/mypkg/build/mypkg/build', 'install', '--record', '/home/sasaki/ros2_ws/src/mypkg/build/mypkg/install.log', '--install-scripts', '$base/lib/mypkg', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/sasaki/ros2_ws/src/mypkg', 'env': {'USER': 'sasaki', 'SHLVL': '1', 'HOME': '/home/sasaki', 'OLDPWD': '/home/sasaki/ros2_ws/src/mypkg/mypkg', 'WSL_DISTRO_NAME': 'Ubuntu-20.04', 'WAYLAND_DISPLAY': 'wayland-0', 'LOGNAME': 'sasaki', 'NAME': 'sh1105', 'WSL_INTEROP': '/run/WSL/9_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'TERM': 'xterm-256color', 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/Common Files/Roxio Shared/DLLShared/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/MATLAB/R2024a/bin:/mnt/c/Users/tatsu/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/tatsu/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin', 'XDG_RUNTIME_DIR': '/mnt/wslg/runtime-dir', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'SHELL': '/bin/bash', 'PWD': '/home/sasaki/ros2_ws/src/mypkg/build/mypkg', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'WSLENV': '', 'PYTHONPATH': '/home/sasaki/ros2_ws/src/mypkg/build/mypkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages:'}, 'shell': False}
+[0.705506] (-) TimerEvent: {}
+[0.806076] (-) TimerEvent: {}
+[0.852701] (mypkg) StdoutLine: {'line': b'running egg_info\n'}
+[0.853227] (mypkg) StdoutLine: {'line': b'creating build/mypkg/mypkg.egg-info\n'}
+[0.853346] (mypkg) StdoutLine: {'line': b'writing build/mypkg/mypkg.egg-info/PKG-INFO\n'}
+[0.853716] (mypkg) StdoutLine: {'line': b'writing dependency_links to build/mypkg/mypkg.egg-info/dependency_links.txt\n'}
+[0.854184] (mypkg) StdoutLine: {'line': b'writing entry points to build/mypkg/mypkg.egg-info/entry_points.txt\n'}
+[0.854297] (mypkg) StdoutLine: {'line': b'writing requirements to build/mypkg/mypkg.egg-info/requires.txt\n'}
+[0.854542] (mypkg) StdoutLine: {'line': b'writing top-level names to build/mypkg/mypkg.egg-info/top_level.txt\n'}
+[0.861115] (mypkg) StdoutLine: {'line': b"writing manifest file 'build/mypkg/mypkg.egg-info/SOURCES.txt'\n"}
+[0.894275] (mypkg) StdoutLine: {'line': b"reading manifest file 'build/mypkg/mypkg.egg-info/SOURCES.txt'\n"}
+[0.894794] (mypkg) StdoutLine: {'line': b"writing manifest file 'build/mypkg/mypkg.egg-info/SOURCES.txt'\n"}
+[0.895153] (mypkg) StdoutLine: {'line': b'running build\n'}
+[0.895208] (mypkg) StdoutLine: {'line': b'running build_py\n'}
+[0.895251] (mypkg) StdoutLine: {'line': b'creating /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build\n'}
+[0.895456] (mypkg) StdoutLine: {'line': b'creating /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib\n'}
+[0.895966] (mypkg) StdoutLine: {'line': b'creating /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg\n'}
+[0.896252] (mypkg) StdoutLine: {'line': b'copying mypkg/listener.py -> /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg\n'}
+[0.896417] (mypkg) StdoutLine: {'line': b'copying mypkg/__init__.py -> /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg\n'}
+[0.896462] (mypkg) StdoutLine: {'line': b'copying mypkg/talker.py -> /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg\n'}
+[0.897131] (mypkg) StdoutLine: {'line': b'running install\n'}
+[0.898165] (mypkg) StdoutLine: {'line': b'running install_lib\n'}
+[0.898985] (mypkg) StdoutLine: {'line': b'creating /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg\n'}
+[0.899424] (mypkg) StdoutLine: {'line': b'copying /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg/listener.py -> /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg\n'}
+[0.899473] (mypkg) StdoutLine: {'line': b'copying /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg/__init__.py -> /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg\n'}
+[0.899510] (mypkg) StdoutLine: {'line': b'copying /home/sasaki/ros2_ws/src/mypkg/build/mypkg/build/lib/mypkg/talker.py -> /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg\n'}
+[0.900057] (mypkg) StdoutLine: {'line': b'byte-compiling /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg/listener.py to listener.cpython-38.pyc\n'}
+[0.901061] (mypkg) StdoutLine: {'line': b'byte-compiling /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg/__init__.py to __init__.cpython-38.pyc\n'}
+[0.901204] (mypkg) StderrLine: {'line': b'  File "/home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg/listener.py", line 10\n'}
+[0.901681] (mypkg) StderrLine: {'line': b'    def cb(msg)\n'}
+[0.901750] (mypkg) StderrLine: {'line': b'              ^\n'}
+[0.902171] (mypkg) StderrLine: {'line': b'SyntaxError: invalid syntax\n'}
+[0.902320] (mypkg) StderrLine: {'line': b'\n'}
+[0.902478] (mypkg) StdoutLine: {'line': b'byte-compiling /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg/talker.py to talker.cpython-38.pyc\n'}
+[0.902603] (mypkg) StdoutLine: {'line': b'running install_data\n'}
+[0.902649] (mypkg) StdoutLine: {'line': b'creating /home/sasaki/ros2_ws/src/mypkg/install/mypkg/share/ament_index\n'}
+[0.902864] (mypkg) StdoutLine: {'line': b'creating /home/sasaki/ros2_ws/src/mypkg/install/mypkg/share/ament_index/resource_index\n'}
+[0.902915] (mypkg) StdoutLine: {'line': b'creating /home/sasaki/ros2_ws/src/mypkg/install/mypkg/share/ament_index/resource_index/packages\n'}
+[0.902950] (mypkg) StdoutLine: {'line': b'copying resource/mypkg -> /home/sasaki/ros2_ws/src/mypkg/install/mypkg/share/ament_index/resource_index/packages\n'}
+[0.902984] (mypkg) StdoutLine: {'line': b'copying package.xml -> /home/sasaki/ros2_ws/src/mypkg/install/mypkg/share/mypkg\n'}
+[0.903018] (mypkg) StdoutLine: {'line': b'running install_egg_info\n'}
+[0.904197] (mypkg) StdoutLine: {'line': b'Copying build/mypkg/mypkg.egg-info to /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/python3.8/site-packages/mypkg-0.0.0-py3.8.egg-info\n'}
+[0.905550] (mypkg) StdoutLine: {'line': b'running install_scripts\n'}
+[0.906330] (-) TimerEvent: {}
+[0.921619] (mypkg) StdoutLine: {'line': b'Installing listener script to /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/mypkg\n'}
+[0.922002] (mypkg) StdoutLine: {'line': b'Installing talker script to /home/sasaki/ros2_ws/src/mypkg/install/mypkg/lib/mypkg\n'}
+[0.922404] (mypkg) StdoutLine: {'line': b"writing list of installed files to '/home/sasaki/ros2_ws/src/mypkg/build/mypkg/install.log'\n"}
+[0.940892] (mypkg) CommandEnded: {'returncode': 0}
+[0.964008] (mypkg) JobEnded: {'identifier': 'mypkg', 'rc': 0}
+[0.965128] (-) EventReactorShutdown: {}
