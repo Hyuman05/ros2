@@ -2,7 +2,7 @@
     on: push
     jobs:
       test:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-20.04
         strategy:
           matrix:
             python-version: ["3.8"]
@@ -10,10 +10,8 @@
         steps:
         - uses: actions/checkout@v3
         - name: All test
-          run: | 
-            sudo apt update
-            sudo apt install -y curl gnupg lsb-release
-            curl -sSL http://repos.ros.org/ros2/keys/ros2.asc | gpg --dearmor -o /usr/share/keyrings/ros-archive-keyring.gpg
-            sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
-            sudo apt update
-            sudo apt install -y ros-foxy-desktop
+          run: 
+            rsync -av ./ /root/ros2_ws/src/mypkg/
+            cd /root/ros2_ws
+            bash -exv ./src/mypkg/test/test.bash /root
+            
