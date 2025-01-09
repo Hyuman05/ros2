@@ -30,5 +30,6 @@
             shell: bash  # bashシェルを指定
           - name: Run test script
             run: |
+              ls -l /root/ros2_ws/src/mypkg/test/test.bash
               bash -exv ./src/mypkg/test/test.bash /root
             shell: bash  # bashシェルを指定
