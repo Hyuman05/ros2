@@ -11,6 +11,6 @@
         - uses: actions/checkout@v3
         - name: All test
           run: 
-            rsync -av ./ /home/ros2_ws/src/mypkg/
+            rsync -av ./ /runner/work/ros2_ws/src/mypkg/
             cd /home/ros2_ws
             bash -exv ./src/mypkg/test/test.bash
