@@ -23,7 +23,7 @@ setup(
     entry_points={
         'console_scripts': [
             'translator = mypkg.translator:main',
-            'listener = mypkg.listener:main',
+            'questioner = mypkg.questioner:main',
         ],
     },
 )
