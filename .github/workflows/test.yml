@@ -10,4 +10,9 @@
         steps:
         - uses: actions/checkout@v3
         - name: All test
-          run: bash -xv ./test.bash
+          run: sudo apt update
+               sudo apt install -y curl gnupg lsb-release
+               curl -sSL http://repos.ros.org/ros2/keys/ros2.asc | sudo apt-key add -
+               sudo sh -c 'echo "deb [arch=amd64] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
+               sudo apt update
+               sudo apt install -y ros-foxy-desktop
