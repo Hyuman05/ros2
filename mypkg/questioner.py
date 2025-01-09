@@ -15,6 +15,7 @@ def send_translation_request(client, japanese_word):
 
 
     def translation_response_callback(future):
+        rclpy.spin_once(node)
         try:
                 response = future.result()
                 node.get_logger().info(f'日本語: "{request.japanese}", 英語: "{response.english}"')
