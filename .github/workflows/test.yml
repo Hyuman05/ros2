@@ -9,6 +9,7 @@
         - name: All test
           run: |
             source /opt/ros/foxy/setup.bash
+            shell: bash
             rsync -av ./ /root/ros2_ws/src/mypkg/
             cd /root/ros2_ws
             colcon build
