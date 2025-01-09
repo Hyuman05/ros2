@@ -2,13 +2,12 @@
     on: push
     jobs:
       test:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         container: ryuichiueda/ubuntu22.04-ros2:latest
         steps:
         - uses: actions/checkout@v2
         - name: All test
           run: |
-            source /opt/ros/foxy/setup.bash
             shell: bash
             rsync -av ./ /root/ros2_ws/src/mypkg/
             cd /root/ros2_ws
