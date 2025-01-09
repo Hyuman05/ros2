@@ -3,14 +3,11 @@
     jobs:
       test:
         runs-on: ubuntu-20.04
-        strategy:
-          matrix:
-            python-version: ["3.8"]
-    
+        container: ryuichiueda/ubuntu22.04-ros2:latest
         steps:
-        - uses: actions/checkout@v3
+        - uses: actions/checkout@v2
         - name: All test
-          run: 
-            rsync -av ./ /runner/work/ros2_ws/src/mypkg/
-            cd /home/ros2_ws
-            bash -exv ./src/mypkg/test/test.bash
+          run: |
+            rsync -av ./ /root/ros2_ws/src/mypkg/
+            cd /root/ros2_ws
+            bash -exv ./src/mypkg/test/test.bash /root
