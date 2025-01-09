@@ -10,7 +10,7 @@
         steps:
         - uses: actions/checkout@v3
         - name: All test
-          run: 
+          run: | 
             sudo apt update
             sudo apt install -y curl gnupg lsb-release
             curl -sSL http://repos.ros.org/ros2/keys/ros2.asc | sudo apt-key add -
