@@ -1,5 +1,12 @@
 #!/bin/bash -evx
 
+dir=~
+[ "$1" != "" ] && dir="$1"
+
+cd $dir/ros2_ws
+colcon build
+source $dir/.bashrc
+
 ros2 launch mypkg translate_question.launch.py &
 LAUNCH_PID=$!
 sleep 10
