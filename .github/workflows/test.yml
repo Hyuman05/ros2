@@ -5,7 +5,7 @@
         runs-on: ubuntu-20.04
         container: ryuichiueda/ubuntu22.04-ros2:latest
         steps:
-          - shell: bash
+            shell: bash
           - uses: actions/checkout@v2
           - name: Install ROS 2 humble
             run: |
@@ -19,16 +19,20 @@
               sudo apt install -y python3-colcon-common-extensions
               sudo apt install -y python3-pip
               sudo apt install -y python3-rosdep
+            shell: bash
 
           - name: Source ROS 2
             run: |
               # ROS 2 のセットアップ
               source /opt/ros/humble/setup.bash
+            shell: bash
 
           - name: Install dependencies
             run: |
               sudo apt install -y python3-pytest
               pip3 install -r ros2_ws/src/mypkg/requirements.txt
+            shell: bash
+
           - name: Sync files and build workspace
             run: |
               rsync -av ./ /root/ros2_ws/src/mypkg/
@@ -36,10 +40,10 @@
               source /opt/ros/humble/setup.bash
               colcon build
               source install/setup.bash
+            shell: bash
 
-          
           - name: Run test script
             run: |
               ls -l /root/ros2_ws/src/mypkg/test/test.bash
               bash -exv /root/ros2_ws/src/mypkg/test/test.bash /root
-
+            shell: bash
