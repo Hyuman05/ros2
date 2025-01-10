@@ -29,7 +29,10 @@
           - name: Install dependencies
             run: |
               sudo apt install -y python3-pytest
-              pip3 install -r ros2_ws/src/mypkg/requirements.txt
+              if [ -f ros2_ws/src/mypkg/requirements.txt]; then
+                pip3 install -r ros2_ws/src/mypkg/requirements.txt
+              fi
+
             shell: bash
 
           - name: Sync files and build workspace
