@@ -16,10 +16,18 @@
               sudo apt update
               sudo apt install -y ros-humble-desktop
               sudo apt install -y python3-colcon-common-extensions
+              sudo apt install -y python3-pip
+              sudo apt install -y python3-rosdep
 
+          - name: Source ROS 2
+            run: |
               # ROS 2 のセットアップ
               source /opt/ros/humble/setup.bash
-            shell: bash  # bashシェルを指定
+
+          - name: Install dependencies
+            run: |
+              sudo apt install -y python3-pytest
+              pip3 install -r ros2_ws/src/mypkg/requirements.txt
           - name: Sync files and build workspace
             run: |
               rsync -av ./ /root/ros2_ws/src/mypkg/
@@ -27,9 +35,10 @@
               source /opt/ros/humble/setup.bash
               colcon build
               source install/setup.bash
-            shell: bash  # bashシェルを指定
+
+          
           - name: Run test script
             run: |
               ls -l /root/ros2_ws/src/mypkg/test/test.bash
               bash -exv /root/ros2_ws/src/mypkg/test/test.bash /root
-            shell: bash  # bashシェルを指定
+
