@@ -1,51 +1,13 @@
-    name: test
-    on: push
-    jobs:
-      test:
-        runs-on: ubuntu-20.04
-        container: ryuichiueda/ubuntu22.04-ros2:latest
-        steps:
-          - uses: actions/checkout@v2
-          - name: Install ROS 2 humble
-            run: |
-              # ROS 2 Foxyの依存関係をインストール
-              sudo apt update
-              sudo apt install -y curl gnupg lsb-release
-              sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo tee /etc/apt/trusted.gpg.d/ros.asc
-              sudo sh -c 'echo "deb [arch=amd64] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
-              sudo apt update
-              sudo apt install -y ros-humble-desktop
-              sudo apt install -y python3-colcon-common-extensions
-              sudo apt install -y python3-pip
-              sudo apt install -y python3-rosdep
-            shell: bash
-
-          - name: Source ROS 2
-            run: |
-              # ROS 2 のセットアップ
-              source /opt/ros/humble/setup.bash
-            shell: bash
-
-          - name: Install dependencies
-            run: |
-              sudo apt install -y python3-pytest
-              if [ -f ros2_ws/src/mypkg/requirements.txt]; then
-                pip3 install -r ros2_ws/src/mypkg/requirements.txt
-              fi
-
-            shell: bash
-
-          - name: Sync files and build workspace
-            run: |
-              rsync -av ./ /root/ros2_ws/src/mypkg/
-              cd /root/ros2_ws
-              source /opt/ros/humble/setup.bash
-              colcon build
-              source install/setup.bash
-            shell: bash
-
-          - name: Run test script
-            run: |
-              ls -l /root/ros2_ws/src/mypkg/test/test.bash
-              bash -exv /root/ros2_ws/src/mypkg/test/test.bash /root
-            shell: bash
+name: test
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    container: ryuichiueda/ubuntu22.04-ros2:latest #上田先生のコンテナを使用
+    steps:
+      - uses: actions/checkout@v2
+      - name: build and test
+        run: |
+          rsync -av ./ /root/ros2_ws/src/mypkg/
+          cd /root/ros2_ws
+          bash -xv ./src/mypkg/test/test.bash /root
