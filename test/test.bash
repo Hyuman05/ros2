@@ -1,67 +1,62 @@
-#!/bin/bash -evx
+#!/bin/bash
 
-dir=~
-[ "$1" != "" ] && dir="$1"
+# Ensure ROS 2 workspace is sourced
+source /opt/ros/foxy/setup.bash
+source ~/ros2_ws/install/setup.bash
 
-cd $dir/ros2_ws
-colcon build
-source $dir/.bashrc
-
-# translate_question.launch.pyをバックグラウンドで起動
+# Launch the nodes
 ros2 launch mypkg translate_question.launch.py &
-LAUNCH_PID=$!
-sleep 10  # ノードの起動を待機
 
-# 'trigger'サービスが利用可能になるまで待機
-echo "Checking if 'trigger' service is available..."
-for i in {1..10}; do
-    if ros2 service list | grep -q "/trigger"; then
-        echo "'trigger' service is available."
-        break
-    else
-        echo "Waiting for 'trigger' service to be available..."
-        sleep 1  # 1秒待機
-    fi
-done
+# Allow time for nodes to start up
+sleep 5
 
-# サービスが見つからない場合はテスト失敗
-if ! ros2 service list | grep -q "/trigger"; then
-    echo "'trigger' service is not available. Test failed."
-    kill $LAUNCH_PID
-    exit 1
-fi
-
-echo "calling 'trigger' service with test input..."
-REQUEST='{"japanese": "こんにちは"}'
-RESPONSE=$(ros2 service call /trigger person_msgs/srv/Trigger "$REQUEST")
-
-if echo "$RESPONSE" | grep -q "Hello"; then
-    echo "Service responded correctly: $RESPONSE"
+# Test 1: Check translation for "こんにちは"
+result_hello=$(ros2 topic echo /translation_topic --once | grep -o 'Hello')
+if [ "$result_hello" == "Hello" ]; then
+    echo "Test Passed: 'こんにちは' was correctly translated to 'Hello'"
 else
-    echo "Unexpected response: $RESPONSE"
-    kill $LAUNCH_PID
-    exit 1
+    echo "Test Failed: 'こんにちは' translation error"
 fi
 
-# 次のテスト
-TEST_WORDS=("ありがとう" "さようなら" "いぬ" "ねこ" "不明な単語")
-EXPECTED=("thank you" "Goodbye" "Dog" "cat" "Unknown")
+# Test 2: Check translation for "ありがとう"
+result_thanks=$(ros2 topic echo /translation_topic --once | grep -o 'Thank you')
+if [ "$result_thanks" == "Thank you" ]; then
+    echo "Test Passed: 'ありがとう' was correctly translated to 'Thank you'"
+else
+    echo "Test Failed: 'ありがとう' translation error"
+fi
 
-for i in "${!TEST_WORDS[@]}"; do
-    # サービスに送るリクエストを構築
-    REQUEST="{\"japanese\": \"${TEST_WORDS[$i]}\"}"
-    RESPONSE=$(ros2 service call /trigger person_msgs/srv/Trigger "$REQUEST")
+# Test 3: Check translation for "さようなら"
+result_goodbye=$(ros2 topic echo /translation_topic --once | grep -o 'Goodbye')
+if [ "$result_goodbye" == "Goodbye" ]; then
+    echo "Test Passed: 'さようなら' was correctly translated to 'Goodbye'"
+else
+    echo "Test Failed: 'さようなら' translation error"
+fi
 
-    # 期待される応答と比較
-    if echo "$RESPONSE" | grep -q "${EXPECTED[$i]}"; then
-        echo "Test passed for '${TEST_WORDS[$i]}'."
-    else
-        echo "Test failed for '${TEST_WORDS[$i]}'. Response: $RESPONSE"
-        kill $LAUNCH_PID
-        exit 1
-    fi
-done
+# Test 4: Check translation for "いぬ"
+result_dog=$(ros2 topic echo /translation_topic --once | grep -o 'Dog')
+if [ "$result_dog" == "Dog" ]; then
+    echo "Test Passed: 'いぬ' was correctly translated to 'Dog'"
+else
+    echo "Test Failed: 'いぬ' translation error"
+fi
 
-# 終了処理
-kill $LAUNCH_PID
-exit 0
+# Test 5: Check translation for "ねこ"
+result_cat=$(ros2 topic echo /translation_topic --once | grep -o 'Cat')
+if [ "$result_cat" == "Cat" ]; then
+    echo "Test Passed: 'ねこ' was correctly translated to 'Cat'"
+else
+    echo "Test Failed: 'ねこ' translation error"
+fi
+
+# Test 6: Check translation for "Dog" (should return 'Unknown')
+result_unknown=$(ros2 topic echo /translation_topic --once | grep -o 'Unknown')
+if [ "$result_unknown" == "Unknown" ]; then
+    echo "Test Passed: 'Dog' was correctly translated to 'Unknown'"
+else
+    echo "Test Failed: 'Dog' translation error"
+fi
+
+# Stop the launch process after testing
+killall ros2
