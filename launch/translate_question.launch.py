@@ -8,12 +8,15 @@ def generate_launch_description():
 
     translator = launch_ros.actions.Node(
         package='mypkg',
-        executable='translator'
+        executable='translator',
+        name='translator',
+        output='screen',
         )
     questioner = launch_ros.actions.Node(
         package='mypkg',
         executable='questioner',
-        output='screen'
+        name='questioner',
+        output='screen',
         )
 
     return launch.LaunchDescription([translator, questioner])

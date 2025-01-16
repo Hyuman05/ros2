@@ -2,29 +2,33 @@ import rclpy
 from rclpy.node import Node
 from person_msgs.srv import Trigger
 
-rclpy.init()
-node = Node("translator")
+class Translator(Node):
+    def __init__(self):
+        super().__init__("translator")
+        self.srv = self.create_service(Trigger, 'trigger', self.translate_callback)
+        self.get_logger().info("Translator service is ready.")
 
-def translate_callback( request, response):
-    dictionary = {
-        "こんにちわ": "Hello",
-        "ありがとう": "thank you",
-        "さようなら": "Goodbye",
-        "いぬ": "Dog",
-        "ねこ": "cat",
-    }
-    word = request.japanese
-    translation = dictionary.get(word, "Unknown")
-    response.english = translation
-    return response
+    def translate_callback(self, request, response):
+        dictionary = {
+            "こんにちは": "Hello",
+            "ありがとう": "thank you",
+            "さようなら": "Goodbye",
+            "いぬ": "Dog",
+            "ねこ": "Cat",
+        }
+        word = request.input
+        translation = dictionary.get(word, "Unknown")
+        response.output = translation
+        return response
 
 def main():
-    srv = node.create_service(Trigger, 'trigger', translate_callback)
+    rclpy.init()
+    translator_node = Translator()
     
     try:
-        rclpy.spin(node)
+        rclpy.spin(translator_node)
     except KeyboardInterrupt:
         pass
     finally:
-        node.destroy_node()
+        translator_node.destroy_node()
         rclpy.shutdown()

@@ -2,37 +2,46 @@ import rclpy
 from rclpy.node import Node
 from person_msgs.srv import Trigger 
 
+class Questioner(Node):
+    def __init__(self):
+        super().__init__("questioner")
+        self.client = self.create_client(Trigger, "trigger")
+        self.get_logger().info('サービスクライアントが作成されました')
+        
+        while not self.client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info("待機中")
+        self.words = ["こんにちは", "ありがとう", "さようなら", "いぬ", "ねこ", "dog"]
+        self.request_count = 0
+        self.send_next_request()
+    def send_next_request(self):
+        if self.request_count < len(self.words):
+            word = self.words[self.request_count]
+            self.send_request(word)
+            self.request_count += 1
+        else:
+            self.get_logger().info("全てのリクエストが完了。終了します。")
 
-rclpy.init()
-node = Node("questioner")
+    def send_request(self, word):
+        self.request = Trigger.Request()
+        self.request.input = word
+        self.future = self.client.call_async(self.request)
+        self.future.add_done_callback(lambda future: self.callback(future, word))
 
-def send_translation_request(client, japanese_word):
-    request = Trigger.Request()
-    request.japanese = japanese_word
-
-    future = client.call_async(request)
-
-
-
-    def translation_response_callback(future):
-        rclpy.spin_once(node)
+    def callback(self, future, word):
         try:
-                response = future.result()
-                node.get_logger().info(f'日本語: "{request.japanese}", 英語: "{response.english}"')
+            response = future.result()
+            self.get_logger().info(f'intput: "{word}", output: "{response.output}"')
         except Exception as e:
-                node.get_logger().error(f'サービス呼び出しに失敗しました: {e}')
-        finally:
-                rclpy.shutdown()
-
-    future.add_done_callback(translation_response_callback)
-
+            self.get_logger().error(f'サービス呼び出しに失敗しました: {e}')
+        self.send_next_request()
 def main():
-    client = node.create_client(Trigger, 'trigger')
-    node.get_logger().info('サービスクライアントが作成されました')
+    rclpy.init()
+    questioner_node = Questioner()
 
-    while not client.wait_for_service(timeout_sec=1.0):
-        node.get_logger().info('待機中...')
-
-    send_translation_request(client, "こんにちわ")
-
-    rclpy.spin(node)
+    try:
+        rclpy.spin(questioner_node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+         questioner_node.destroy_node()
+         rclpy.shutdown()
