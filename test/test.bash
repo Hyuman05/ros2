@@ -1,10 +1,17 @@
 #!/bin/bash
 
-#source /opt/ros/humble/setup.bash
-#source /root/ros2_ws/install/setup.bash
+source /opt/ros/humble/setup.bash
+source /root/ros2_ws/install/setup.bash
 # Launch the nodes
-#ros2 launch mypkg translate_question.launch.py &
+dir=~
+[ "$1" != "" ] && dir="$1"
 
+# ワークスペースに移動してビルド
+cd $dir/ros2_ws
+colcon build
+source $dir/.bashrc
+ros2 launch mypkg translate_question.launch.py &
+node_pid=$!
 # Allow time for nodes to start up
 sleep 10
 
