@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source /opt/ros/humble/setup.bash
-source /root/ros2_ws/install/setup.bash
+#source /opt/ros/humble/setup.bash
+#source /root/ros2_ws/install/setup.bash
 # Launch the nodes
 dir=~
 [ "$1" != "" ] && dir="$1"
