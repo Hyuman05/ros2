@@ -4,8 +4,19 @@ source /opt/ros/humble/setup.bash
 source /root/ros2_ws/install/setup.bash
 # Launch the nodes
 ros2 launch mypkg translate_question.launch.py &
+
 # Allow time for nodes to start up
-sleep 5
+echo "waiting for nodes to initialize..."
+timeout=60
+wait_time=0
+
+while ! ros2 topic list | grep -q "/translation_topic"; do
+    sleep 1
+    wait_time=$((wait_time + 1))
+    if [ "$wait_time" -ge "timeout" ]; then
+        echo "Timeout: /translation_topic is not available."
+        exit 1
+    fi done
 
 # Test 1: Check translation for "こんにちは"
 result_hello=$(ros2 topic echo /translation_topic --once | grep -o 'Hello')
