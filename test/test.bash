@@ -13,7 +13,7 @@ wait_time=0
 while ! ros2 topic list | grep -q "/translation_topic"; do
     sleep 1
     wait_time=$((wait_time + 1))
-    if [ "$wait_time" -ge "timeout" ]; then
+    if [ "$wait_time" -ge "$timeout" ]; then
         echo "Timeout: /translation_topic is not available."
         exit 1
     fi done
