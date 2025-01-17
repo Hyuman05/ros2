@@ -14,17 +14,17 @@ jobs:
       - name: Setup ROS2 Workspace
         shell: bash
         run: |
-          source /opt/ros/humble/setup.bash || source /opt/ros/foxy/setup.bash
+          source /opt/ros/foxy/setup.bash
           colcon build
       - name: build
         shell: bash
         run: |
-          rsync -av ./ /home/ros2_ws/src/mypkg/
+          rsync -av ./ /root/ros2_ws/src/mypkg/
           cd /root/ros2_ws
           colcon build
           source install/setup.bash
       - name: Run Tests
         shell: bash
         run:
-          cd /home/ros2_ws
+          cd /root/ros2_ws
           bash -xv ./src/mypkg/test/test.bash /root
