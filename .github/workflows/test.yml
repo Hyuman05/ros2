@@ -26,5 +26,5 @@ jobs:
       - name: Run Tests
         shell: bash
         run:
-          cd /root/ros2_ws/src  || exit 1
+          cd /root/ros2_ws/ || exit 1
           bash -xv ./src/mypkg/test/test.bash /root
