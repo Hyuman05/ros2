@@ -16,7 +16,7 @@ node_pid=$!
 sleep 10
 
 # Test 1: Check translation for "こんにちは"
-result_hello=$(ros2 topic echo -t std_msgs/Trigger/translation_topic --once | grep -o 'Hello')
+result_hello=$(ros2 topic echo /Trigger/translation_topic --once | grep -o 'Hello')
 if [ "$result_hello" == "Hello" ]; then
     echo "Test Passed: 'こんにちは' was correctly translated to 'Hello'"
 else
