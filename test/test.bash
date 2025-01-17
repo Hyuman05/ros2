@@ -1,12 +1,5 @@
 #!/bin/bash
 
-# Ensure ROS 2 workspace is sourced
-source /opt/ros/foxy/setup.bash
-source ~/ros2_ws/install/setup.bash
-
-# Launch the nodes
-ros2 launch mypkg translate_question.launch.py &
-
 # Allow time for nodes to start up
 sleep 5
 
