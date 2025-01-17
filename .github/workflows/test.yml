@@ -3,7 +3,7 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-20.04
-    container: ryuichiueda/ubuntu20.04-ros2:latest #上田先生のコンテナを使用
+    container: ryuichiueda/ubuntu22.04-ros2:latest #上田先生のコンテナを使用
     steps:
       - uses: actions/checkout@v2
       - name: Install Dependencies
