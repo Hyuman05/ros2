@@ -1,9 +1,9 @@
 #!/bin/bash
 
-source /opt/ros/humble/setup.bash
-source /root/ros2_ws/install/setup.bash
+#source /opt/ros/humble/setup.bash
+#source /root/ros2_ws/install/setup.bash
 # Launch the nodes
-ros2 launch mypkg translate_question.launch.py &
+#ros2 launch mypkg translate_question.launch.py &
 
 # Allow time for nodes to start up
 sleep 10
