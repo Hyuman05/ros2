@@ -3,11 +3,30 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-22.04
-    container: ryuichiueda/ubuntu22.04-ros2:latest #上田先生のコンテナを使用
+    container: ryuichiueda/ubuntu22.04-ros2:latest # 上田先生のコンテナを使用
     steps:
+      # コードをクローン
       - uses: actions/checkout@v2
-      - name: build acd test
+
+      # 必要な依存関係をインストール
+      - name: Install dependencies
         run: |
+          apt update
+          apt install -y python3-colcon-common-extensions
+
+      # ソースコードを配置してビルド
+      - name: Build and test
+        run: |
+          set -e
           rsync -av ./ /root/ros2_ws/src/mypkg/
+          source /opt/ros/humble/setup.bash # ROS 2のセットアップ（Humbleに変更可能）
           cd /root/ros2_ws
+
+          # ビルド
+          colcon build --event-handlers console_direct+
+
+          # 環境変数を設定
+          source install/setup.bash
+
+          # テストスクリプトの実行
           bash -xv ./src/mypkg/test/test.bash /root
