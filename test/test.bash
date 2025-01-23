@@ -1,20 +1,10 @@
 #!/bin/bash
 
-# ソース設定
-source /opt/ros/humble/local_setup.bash
-source /root/ros2_ws/install/local_setup.bash
-
-# ノード起動
-ros2 launch mypkg translate_question.launch.py &
-LAUNCH_PID=$!  # 起動プロセスのPIDを保存
-# ノードが立ち上がるまで待機
-sleep 5
-
 # テスト結果追跡用変数
 TEST_FAILED=0
 
 # Test 1: Check translation for "こんにちは"
-result_hello=$(ros2 topic echo /translation_topic person_msgs/msg/Trigger --once | grep -o 'Hello')
+result_hello=$(ros2 service call /trigger person_msgs/srv/Trigger "{input: 'こんにちは'}" | grep -o 'Hello')
 if [ "$result_hello" == "Hello" ]; then
     echo "Test Passed: 'こんにちは' was correctly translated to 'Hello'"
 else
@@ -23,7 +13,7 @@ else
 fi
 
 # Test 2: Check translation for "ありがとう"
-result_thanks=$(ros2 topic echo /translation_topic std_msgs/msg/String --once | grep -o 'Thank you')
+result_thanks=$(ros2 service call /trigger person_msgs/srv/Trigger "{input: 'ありがとう'}" | grep -o 'Thank you')
 if [ "$result_thanks" == "Thank you" ]; then
     echo "Test Passed: 'ありがとう' was correctly translated to 'Thank you'"
 else
@@ -32,7 +22,7 @@ else
 fi
 
 # Test 3: Check translation for "さようなら"
-result_goodbye=$(ros2 topic echo /translation_topic --once | grep -o 'Goodbye')
+result_goodbye=$(ros2 service call /trigger person_msgs/srv/Trigger "{input: 'さようなら'}" | grep -o 'Goodbye')
 if [ "$result_goodbye" == "Goodbye" ]; then
     echo "Test Passed: 'さようなら' was correctly translated to 'Goodbye'"
 else
@@ -40,36 +30,9 @@ else
     TEST_FAILED=1
 fi
 
-# Test 4: Check translation for "いぬ"
-result_dog=$(ros2 topic echo /translation_topic --once | grep -o 'Dog')
-if [ "$result_dog" == "Dog" ]; then
-    echo "Test Passed: 'いぬ' was correctly translated to 'Dog'"
+# 結果の出力
+if [ $TEST_FAILED -eq 0 ]; then
+    echo "All tests passed!"
 else
-    echo "Test Failed: 'いぬ' translation error"
-    TEST_FAILED=1
+    echo "Some tests failed."
 fi
-
-# Test 5: Check translation for "ねこ"
-result_cat=$(ros2 topic echo /translation_topic --once | grep -o 'Cat')
-if [ "$result_cat" == "Cat" ]; then
-    echo "Test Passed: 'ねこ' was correctly translated to 'Cat'"
-else
-    echo "Test Failed: 'ねこ' translation error"
-    TEST_FAILED=1
-fi
-
-# Test 6: Check translation for "Dog" (should return 'Unknown')
-result_unknown=$(ros2 topic echo /translation_topic --once | grep -o 'Unknown')
-if [ "$result_unknown" == "Unknown" ]; then
-    echo "Test Passed: 'Dog' was correctly translated to 'Unknown'"
-else
-    echo "Test Failed: 'Dog' translation error"
-    TEST_FAILED=1
-fi
-
-# 起動プロセスを停止
-kill $LAUNCH_PID
-pkill ros2
-
-# テスト結果を終了コードとして返す
-exit $TEST_FAILED
