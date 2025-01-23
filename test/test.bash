@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ソース設定
-source /opt/ros/foxy/local_setup.bash
+source /opt/ros/humble/local_setup.bash
 source /root/ros2_ws/install/local_setup.bash
 
 # ノード起動
