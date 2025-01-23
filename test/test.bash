@@ -12,7 +12,7 @@ source $dir/.bashrc
 TEST_FAILED=0
 
 # Test 1: Check translation for "こんにちは"
-result_hello=$(ros2 service call /trigger person_msgs/srv/Trigger "{input: 'こんにちは'}" | grep -o 'Hello')
+result_hello=$(ros2 service call /trigger person_msgs/srv/Trigger "{input: 'こんにちは'}" | grep -oP "(?<=output=')[^']+")
 if [ "$result_hello" == "Hello" ]; then
     echo "Test Passed: 'こんにちは' was correctly translated to 'Hello'"
 else
