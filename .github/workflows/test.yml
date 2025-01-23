@@ -5,7 +5,6 @@ jobs:
     runs-on: ubuntu-22.04
     container: ryuichiueda/ubuntu22.04-ros2:latest # 上田先生のコンテナを使用
     steps:
-      # コードをクローン
       - uses: actions/checkout@v2
 
       # 必要な依存関係をインストール
@@ -16,10 +15,11 @@ jobs:
 
       # ソースコードを配置してビルド
       - name: Build and test
+        shell: bash # シェルをbashに設定
         run: |
           set -e
           rsync -av ./ /root/ros2_ws/src/mypkg/
-          source /opt/ros/humble/setup.bash # ROS 2のセットアップ（Humbleに変更可能）
+          source /opt/ros/humble/setup.bash # ROS 2のセットアップ
           cd /root/ros2_ws
 
           # ビルド
