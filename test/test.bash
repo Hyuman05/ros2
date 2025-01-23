@@ -14,7 +14,7 @@ sleep 5
 TEST_FAILED=0
 
 # Test 1: Check translation for "こんにちは"
-result_hello=$(ros2 topic echo /translation_topic --once | grep -o 'Hello')
+result_hello=$(ros2 topic echo /translation_topic person_msgs/Trigger/String --once | grep -o 'Hello')
 if [ "$result_hello" == "Hello" ]; then
     echo "Test Passed: 'こんにちは' was correctly translated to 'Hello'"
 else
