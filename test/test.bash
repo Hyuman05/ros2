@@ -1,5 +1,5 @@
 #!/bin/bash
-source /opt/ros/foxy/setup.bash
+source /opt/ros/humble/setup.bash
 source ~/ros2_ws/install/setup.bash
 # テスト結果追跡用変数
 TEST_FAILED=0
