@@ -23,7 +23,7 @@ else
 fi
 
 # Test 2: Check translation for "ありがとう"
-result_thanks=$(ros2 topic echo /translation_topic --once | grep -o 'Thank you')
+result_thanks=$(ros2 topic echo /translation_topic std_msgs/msg/String --once | grep -o 'Thank you')
 if [ "$result_thanks" == "Thank you" ]; then
     echo "Test Passed: 'ありがとう' was correctly translated to 'Thank you'"
 else
