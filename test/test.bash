@@ -1,6 +1,13 @@
 #!/bin/bash
 source /opt/ros/humble/setup.bash
 source ~/ros2_ws/install/setup.bash
+dir=~
+[ "$1" != "" ] && dir="$1"
+
+cd $dir/ros2_ws
+colcon build
+source $dir/.bashrc
+
 # テスト結果追跡用変数
 TEST_FAILED=0
 
