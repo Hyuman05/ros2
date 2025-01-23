@@ -2,7 +2,7 @@
 
 # ソース設定
 source /opt/ros/humble/setup.bash
-source /root/ros2_ws/install/setup.bash
+source /root/ros2_ws/src/install/setup.bash
 
 # ノード起動
 ros2 launch mypkg translate_question.launch.py &
