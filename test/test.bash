@@ -1,6 +1,7 @@
 #!/bin/bash
 # ROS 2環境のセットアップ
-
+source /opt/ros/humble/setup.bash
+source ~/ros2_ws/install/setup.bash
 # テスト結果追跡変数
 TEST_FAILED=0
 
