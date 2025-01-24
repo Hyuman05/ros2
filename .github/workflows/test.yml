@@ -1,26 +1,42 @@
 name: test
+
 on: push
+
 jobs:
   test:
     runs-on: ubuntu-22.04
     container: ryuichiueda/ubuntu22.04-ros2:latest # 上田先生のコンテナを使用
+
     steps:
+      # リポジトリのチェックアウト
       - uses: actions/checkout@v2
 
       # 必要な依存関係をインストール
       - name: Install dependencies
         run: |
           apt update
-          apt install -y python3-colcon-common-extensions
+          apt install -y python3-colcon-common-extensions ros-humble-rosidl-default-generators
 
       # ソースコードを配置してビルド
       - name: Build and test
-        shell: bash # シェルをbashに設定
+        shell: bash
         run: |
           set -e
-          rsync -av ./ /root/ros2_ws/src/mypkg/
-          source /opt/ros/humble/setup.bash # ROS 2のセットアップ
+
+          # ROS 2 環境のセットアップ
+          source /opt/ros/humble/setup.bash
+
+          # ソースコードをコピー
+          rsync -av ./ /root/ros2_ws/src/
+
+          # ワークスペースへ移動
           cd /root/ros2_ws
+
+          # person_msgs をビルドするための依存関係をチェック
+          if [ ! -d "src/person_msgs" ]; then
+            echo "Error: person_msgs is missing in src/"
+            exit 1
+          fi
 
           # ビルド
           colcon build --event-handlers console_direct+
