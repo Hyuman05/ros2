@@ -16,6 +16,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y python3-colcon-common-extensions ros-humble-rosidl-default-generators
+          git config --global --add safe.directory /__w/ros2/ros2
           git submodule update --init --recursive
           sudo apt-get install ros-humble-person-msgs
 
