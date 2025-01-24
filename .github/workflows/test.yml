@@ -46,3 +46,6 @@ jobs:
 
           # テストスクリプトの実行
           bash -xv ./src/mypkg/test/test.bash /root
+      - name: List files in src directory
+        run: |
+          ls ~/ros2ws/src
