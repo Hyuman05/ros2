@@ -14,8 +14,9 @@ jobs:
       # 必要な依存関係をインストール
       - name: Install dependencies
         run: |
-          apt update
-          apt install -y python3-colcon-common-extensions ros-humble-rosidl-default-generators
+          sudo apt update
+          sudo apt install -y python3-colcon-common-extensions ros-humble-rosidl-default-generators
+          sudo apt-get install ros-humble-person-msgs
 
       # ソースコードを配置してビルド
       - name: Build and test
